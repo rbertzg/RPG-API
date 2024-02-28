@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RPG_API.Dtos.Character;
 
 namespace RPG_API.Controllers;
@@ -14,7 +15,7 @@ public class CharacterController : ControllerBase
         _characterService = characterService;
     }
 
-    [HttpGet]
+    [HttpGet, Authorize]
     public async Task<ActionResult<ServiceResponse<List<GetCharacterResponseDto>>>> GetAll()
     {
         return Ok(await _characterService.GetAll());
